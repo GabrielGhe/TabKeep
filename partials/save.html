@@ -1,0 +1,38 @@
+<div id="all">
+
+	<!-- Save Header -->
+	<header>
+		<button disabled class="btn tabBtn"><i class="fa fa-save"></i> Save</button>
+		<button ng-click="go('search')" class="btn tabBtn"><i class="fa fa-search"></i> Search</button>
+	</header>
+	<!-- END Save Header -->
+
+	<!-- Search Content -->
+	<div id="sa_content">
+
+		<table id="sa_info">
+			<!-- Name -->
+			<tr>
+				<td>Name</td>
+				<td><input class="sa_info_input" ng-model="saName" type="text"></td>
+			</tr>
+			<!-- Tags -->
+			<tr>
+				<td>Tags</td>
+				<td><input class="sa_info_input" ng-model="saTag" type="text"></td>
+			</tr>
+		</table>
+
+		<!-- Tabs Selected -->
+		<div id="sa_saveTabs">
+		</div>
+	</div>
+	<!-- END Search Content -->
+
+	<!-- Save Footer -->
+	<footer>
+		<!-- Save Session -->
+		<button id="sa_saveBtn" ng-click="" class="btn btn-info"><i class="fa fa-plus"></i> Save Session</button>
+	</footer>
+	<!-- END Save Footer -->
+</div>	

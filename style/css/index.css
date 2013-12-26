@@ -1,0 +1,109 @@
+/*�Gabriel Gheorghian*/
+
+body,button{
+    margin:0;
+    padding:0;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+header{
+	position:absolute;
+	top:0px;
+	width:100%;
+	height:30px;
+}
+
+footer{
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	height:30px;
+}
+
+#all{
+	position:absolute;
+	width:300px;
+	max-height:400px;
+	min-height:400px;
+	overflow-x: hidden;
+	overflow-y:auto;
+	background-color: lightgray;
+}
+
+
+/* * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * *
+ *			Save Tab
+ * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * */
+#sa_content{
+	position:absolute;
+	width:100%;
+	top:30px;
+    height: -webkit-calc(100% - 60px);
+}
+
+#sa_info{
+	float:left;
+	height:70px;
+	margin:3px 2px 0px 2px;
+	width:-webkit-calc(100% - 4px);
+}
+
+#sa_saveTabs{
+	float:left;
+	margin:3px 2px 0px 2px;
+	width:-webkit-calc(100% - 4px);
+	height:240px;
+	overflow: auto;
+	background-color: green;
+}
+
+
+#sa_saveBtn{
+	line-height: 15px;
+	margin: 2px 3px 2px;
+	width:-webkit-calc(100% - 6px);
+}
+
+
+/* * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * *
+ *			Search Tab
+ * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * */
+#se_content{
+	position:absolute;
+	top:30px;
+	width:100%;
+    height: -webkit-calc(100% - 60px);/* WebKit */
+}
+
+
+/* * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * *
+ *			Classes
+ * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * */
+
+
+.tabBtn{
+	float:left;
+	margin: 2px 3px 2px;
+	width:-webkit-calc(50% - 6px);
+	height:-webkit-calc(100% - 4px);
+	line-height:15px;
+}
+
+.tabBtn:first{
+	margin-right:0px;
+	width:-webkit-calc(50% - 3px);
+}
+
+.sa_info_input{
+	margin-top:5px;
+}

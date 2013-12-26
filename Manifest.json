@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "TabKeep",
+  "description": "Saves a session (one or more tabs that the user wishes to view later but doesn't want them to be in the current window",
+  "version": "1.0",
+  
+  "permissions": [
+    "tabs", "storage"
+  ],
+  
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "index.html"
+  }
+}
