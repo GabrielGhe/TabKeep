@@ -29,6 +29,11 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 	
 	/*  METHOD DECLARATIONS ########################### */
 	
+	/**
+	 * Init method
+	 */
+	$scope.Init = function(){
+	}
 
 	/**
 	 * Method used to go to different routes
@@ -37,6 +42,8 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 	$scope.go = function ( hash ) {
 		$location.path(hash);
 	};
+
+	$scope.Init();
 }]);
 
 
@@ -49,9 +56,18 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 MyApp.controller("SearchController", ['$scope','$location', function($scope, $location){
 
 	/**
+	 * Init method
+	 */
+	$scope.Init = function(){
+	
+	}
+
+	/**
 		Method used to go to different routes
 	 */
 	$scope.go = function ( hash ) {
 		$location.path(hash);
 	};
+
+	$scope.Init();
 }]);
