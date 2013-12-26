@@ -11,15 +11,13 @@ td {
 }
 
 header{
-	position:absolute;
-	top:0px;
+	float:left;
 	width:100%;
 	height:30px;
 }
 
 footer{
-	position:absolute;
-	bottom:0px;
+	float:left;
 	width:100%;
 	height:30px;
 }
@@ -39,9 +37,8 @@ footer{
  * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * */
 #sa_content{
-	position:absolute;
+	float:left;
 	width:100%;
-	top:30px;
     height: -webkit-calc(100% - 60px);
 }
 
@@ -75,7 +72,7 @@ footer{
  * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * */
 #se_content{
-	position:absolute;
+	float:left;
 	top:30px;
 	width:100%;
     height: -webkit-calc(100% - 60px);/* WebKit */
