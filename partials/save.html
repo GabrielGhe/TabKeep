@@ -24,9 +24,14 @@
 			<ul>
 				<li class="sa_tab" ng-class="{true : 'sa_selected'}[item.selected]" 
 				ng-repeat="item in sa_tabs" ng-click="sa_select($index)">
+
+					<!-- title -->
 					<div class="sa_tab_title">
+						<i ng-show="item.selected" class="fa fa-check greenColor"></i>
 						{{item.title}}
 					</div>
+
+					<!-- url -->
 					<div class="sa_tab_url">
 						{{item.url}}
 					</div>
@@ -39,7 +44,7 @@
 	<!-- Save Footer -->
 	<footer>
 		<!-- Save Session -->
-		<button id="sa_saveBtn" ng-click="" class="btn btn-info"><i class="fa fa-plus"></i> Save Session</button>
+		<button id="sa_saveBtn" ng-click="" class="btn btn-success"><i class="fa fa-plus"></i> Save Session</button>
 	</footer>
 	<!-- END Save Footer -->
 </div>	

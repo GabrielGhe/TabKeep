@@ -154,16 +154,16 @@ footer{
 }
 
 .sa_tab:hover{
-	background-color:lightblue;
+	background-color:#E8E8E8;
 }
 
 
 .sa_selected{
-	background-color: #98bfcc;
+	background-color: #B0B0B0;
 }
 
 .sa_selected:hover{
-	background-color: #98bfcc;
+	background-color: #B0B0B0;
 }
 
 .sa_tab:last-child{
@@ -175,7 +175,7 @@ footer{
 	text-overflow:ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	width:-webkit-calc(100% - 4px);
+	width:-webkit-calc(100% - 34px);
 }
 
 .sa_tab_url{
@@ -184,7 +184,12 @@ footer{
 	text-overflow:ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	width:-webkit-calc(100% - 4px);
+	width:-webkit-calc(100% - 34px);
+}
+
+.greenColor{
+	color: white;
+	color: darkgreen;
 }
 
 
@@ -194,11 +199,11 @@ div::-webkit-scrollbar{
 }
 
 div::-webkit-scrollbar-track{
-	background-color:lightgray;
+	background-color: lightgray;
 	border-radius:8px;
 }
  
 div::-webkit-scrollbar-thumb{
-    background-color:#49afcd;
+    background-color: #B0B0B0;
 	border-radius:8px;
 }

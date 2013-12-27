@@ -64,7 +64,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 	 * @param  {integer} idx [index of item selected]
 	 */
 	$scope.sa_select = function(idx){
-		$scope.sa_tabs[idx].selected = !$scope.sa_tabs[idx].selected;
+		$scope.sa_tabs[idx].selected = !$scope.sa_tabs[idx].selected;		
 	}
 
 	/**
