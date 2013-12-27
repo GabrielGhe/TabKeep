@@ -2,29 +2,36 @@
 
 	<!-- Save Header -->
 	<header>
-		<button disabled class="btn tabBtn"><i class="fa fa-save"></i> Save</button>
-		<button ng-click="go('search')" class="btn tabBtn"><i class="fa fa-search"></i> Search</button>
+		<button disabled class="btn tabBtn"><i class="fa fa-folder-o"></i> Save</button>
+		<button ng-click="go('search')" class="btn tabBtn"><i class="fa fa-folder-o fa-flip-horizontal"></i> Search</button>
 	</header>
 	<!-- END Save Header -->
 
 	<!-- Search Content -->
-	<div id="sa_content">
+	<div id="content"> 
 
-		<table id="sa_info">
+		<div id="sa_info">
 			<!-- Name -->
-			<tr>
-				<td>Name</td>
-				<td><input class="sa_info_input" ng-model="saName" type="text"></td>
-			</tr>
+			<input class="sa_info_input" ng-model="saName" type="text" placeholder="Name">
+
 			<!-- Tags -->
-			<tr>
-				<td>Tags</td>
-				<td><input class="sa_info_input" ng-model="saTag" type="text"></td>
-			</tr>
-		</table>
+			<input class="sa_info_input" ng-model="saTag" type="text" placeholder="Tags">
+		</div>
 
 		<!-- Tabs Selected -->
 		<div id="sa_saveTabs">
+			<!-- The tabs -->
+			<ul>
+				<li class="sa_tab" ng-class="{true : 'sa_selected'}[item.selected]" 
+				ng-repeat="item in sa_tabs" ng-click="sa_select($index)">
+					<div class="sa_tab_title">
+						{{item.title}}
+					</div>
+					<div class="sa_tab_url">
+						{{item.url}}
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<!-- END Search Content -->

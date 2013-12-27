@@ -10,6 +10,15 @@ td {
     vertical-align: middle;
 }
 
+ul {
+	margin:0px;
+	list-style-type: none;
+}
+
+li {
+    margin:0px;
+}
+
 header{
 	float:left;
 	width:100%;
@@ -30,18 +39,18 @@ footer{
 	background-color: lightgray;
 }
 
+#content{
+	float:left;
+	width:100%;
+    height: -webkit-calc(100% - 60px);
+}
+
 
 /* * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * *
  *			Save Tab
  * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * */
-#sa_content{
-	float:left;
-	width:100%;
-    height: -webkit-calc(100% - 60px);
-}
-
 #sa_info{
 	float:left;
 	height:70px;
@@ -53,9 +62,8 @@ footer{
 	float:left;
 	margin:3px 2px 0px 2px;
 	width:-webkit-calc(100% - 4px);
-	height:240px;
+	height:260px;
 	overflow: auto;
-	background-color: green;
 }
 
 
@@ -71,12 +79,46 @@ footer{
  *			Search Tab
  * * * * * * * * * * * * * * * *
  * * * * * * * * * * * * * * * */
-#se_content{
+
+#se_searchBar{
+	position:relative;
 	float:left;
-	top:30px;
-	width:100%;
-    height: -webkit-calc(100% - 60px);/* WebKit */
+	margin: 2px 3px 2px;
+	width:-webkit-calc(100% - 6px);
+	height:30px;
 }
+
+#search{
+	width:-webkit-calc(100% - 36px);
+	padding-right: 30px;
+}
+
+#search_icon{
+	position: absolute;
+	top:-3px;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+ #se_prev{
+ 	float:left;
+ 	width:50px;
+ 	height:100%;
+ }
+
+#se_pagination{
+	float:left;
+	width:-webkit-calc(100% - 100px);
+	height:100%;
+	background-color:blue;
+}
+
+ #se_next{
+ 	float:right;
+ 	height:100%;
+ 	width:50px;
+ }
 
 
 /* * * * * * * * * * * * * * * *
@@ -94,11 +136,69 @@ footer{
 	line-height:15px;
 }
 
-.tabBtn:first{
+.tabBtn:first-child{
 	margin-right:0px;
 	width:-webkit-calc(50% - 3px);
 }
 
 .sa_info_input{
-	margin-top:5px;
+	width:-webkit-calc(100% - 14px);
+	margin:0px;
+}
+
+.sa_tab{
+	width:-webkit-calc(100% - 6px);
+	margin:3px;
+	border-bottom:1px solid gray;
+	cursor:pointer;
+}
+
+.sa_tab:hover{
+	background-color:lightblue;
+}
+
+
+.sa_selected{
+	background-color: #98bfcc;
+}
+
+.sa_selected:hover{
+	background-color: #98bfcc;
+}
+
+.sa_tab:last-child{
+	border-bottom:0px;
+}
+
+.sa_tab_title{
+	margin:2px;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width:-webkit-calc(100% - 4px);
+}
+
+.sa_tab_url{
+	font-size: 70%;
+	margin:2px;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width:-webkit-calc(100% - 4px);
+}
+
+
+div::-webkit-scrollbar{
+    width: 9px;
+	height:9px;
+}
+
+div::-webkit-scrollbar-track{
+	background-color:lightgray;
+	border-radius:8px;
+}
+ 
+div::-webkit-scrollbar-thumb{
+    background-color:#49afcd;
+	border-radius:8px;
 }

@@ -2,14 +2,18 @@
 
 	<!-- Search Header -->
 	<header>
-		<button ng-click="go('/')" class="btn tabBtn"><i class="fa fa-save"></i> Save</button>
-		<button disabled class="btn tabBtn"><i class="fa fa-search"></i> Search</button>
+		<button ng-click="go('/')" class="btn tabBtn"><i class="fa fa-folder-o"></i> Save</button>
+		<button disabled class="btn tabBtn"><i class="fa fa-folder-o fa-flip-horizontal"></i> Search</button>
 	</header>
 	<!-- END Search Header -->
 
 	<!-- Search Content -->
-	<div id="se_content">
+	<div id="content">
 		<!-- Search Bar -->
+		<div id="se_searchBar">
+			<i id="search_icon" class="fa fa-search"></i>
+			<input id="search" type="search" class="form-control" placeholder="Search">
+		</div>
 
 		<!-- Saved Sessions -->
 	</div>
@@ -17,6 +21,20 @@
 
 	<!-- Search Footer -->
 	<footer>
+		<!-- Prev button -->
+		<button id="se_prev" class="btn">
+			<i class="fa fa-angle-left"></i>
+		</button>
+
+		<!-- pagination -->
+		<div id="se_pagination">
+
+		</div>
+
+		<!-- next button -->
+		<button id="se_prev" class="btn">
+			<i class="fa fa-angle-right"></i>
+		</button>
 	</footer>
 	<!-- END Search Footer -->
 </div>
