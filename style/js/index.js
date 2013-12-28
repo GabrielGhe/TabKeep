@@ -91,7 +91,16 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 	 * Init method
 	 */
 	$scope.Init = function(){
-	
+		$scope.curPage = 0;
+		$scope.itemsPerPage = 5;
+
+		//keepTabs
+		$scope.keepTabs = [];
+		$scope.setKeepTabs();
+
+		//page items
+		$scope.pageItems = [];
+		$scope.setPageItems($scope.keepTabs.length);
 	}
 
 	/**
@@ -100,6 +109,88 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 	$scope.go = function ( hash ) {
 		$location.path(hash);
 	};
+
+
+	/**
+	 * Sets the keepTabs array
+	 * @return {[type]} [description]
+	 */
+	$scope.setKeepTabs = function(){
+		ret = [];
+		ret = [
+			{blah:"blah1"},
+			{blah:"blah2"},
+			{blah:"blah3"},
+			{blah:"blah4"},
+			{blah:"blah5"},
+			{blah:"blah6"},
+			{blah:"blah6"},
+			{blah:"blah7"},
+			{blah:"blah8"},
+			{blah:"blah9"},
+			{blah:"blah10"},
+			{blah:"blah11"},
+			{blah:"blah12"}
+		];
+
+		$scope.keepTabs = ret;
+	}
+
+
+	/**
+	 * Sets the pageItems array
+	 * @param  {integer} num [number of elements]
+	 * @return {array}     [Array of pages]
+	 */
+	$scope.setPageItems = function( num ){
+		ret = [];
+
+		if(num == 0){
+			ret.push(0);
+		} else {
+			//determine end
+			end = num / $scope.itemsPerPage;
+			console.log("first: " + end);
+			end += (num % $scope.itemsPerPage == 0)? 0 : 1;
+			console.log("first: " + end);
+			end = Math.floor(end);
+			console.log("first: " + end);
+
+			for(var i= 0; i < end; i++){
+				ret.push(i);
+			}
+		}
+
+		$scope.pageItems = ret;
+	}
+
+	/**
+	 * Sets the page
+	 * @param {integer} page [new page]
+	 */
+	$scope.setPage = function( page ){
+		$scope.curPage = page;
+	}
+
+
+	/**
+	 * Go to the previous page
+	 */
+	$scope.prevPage = function(){
+		if($scope.curPage > 0){
+			$scope.curPage--;
+		}
+	}
+
+	/**
+	 * Go to the next page
+	 */
+	$scope.nextPage = function(){
+		if($scope.curPage < $scope.pageItems.length - 1){
+			$scope.curPage++;
+		}
+	}
+
 
 	$scope.Init();
 }]);

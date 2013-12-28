@@ -22,17 +22,23 @@
 	<!-- Search Footer -->
 	<footer>
 		<!-- Prev button -->
-		<button id="se_prev" class="btn">
+		<button id="se_prev" class="btn" ng-click="prevPage()"
+		ng-class="{ 'disabled': (curPage == 0) }">
 			<i class="fa fa-angle-left"></i>
 		</button>
 
 		<!-- pagination -->
-		<div id="se_pagination">
-
-		</div>
+		<ul id="se_pagination">
+			<li ng-repeat="page in pageItems">
+				<button class="btn pageBtns" ng-class="{'btn-success disabled': page == curPage}" ng-click="setPage(page)">
+					{{page + 1}}
+				</button>
+			</li>
+		</ul>
 
 		<!-- next button -->
-		<button id="se_prev" class="btn">
+		<button id="se_prev" class="btn" ng-click="nextPage()"
+		ng-class="{ 'disabled': (curPage == pageItems.length - 1) || (keepTabs.length == 0) }">
 			<i class="fa fa-angle-right"></i>
 		</button>
 	</footer>

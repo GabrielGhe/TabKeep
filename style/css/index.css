@@ -111,7 +111,17 @@ footer{
 	float:left;
 	width:-webkit-calc(100% - 100px);
 	height:100%;
-	background-color:blue;
+}
+
+#se_pagination li{
+	display:inline-block;
+	float:left;
+	height: 100%;
+	width:50px;
+}
+
+#se_pagination li button{
+	width:100%;
 }
 
  #se_next{
@@ -206,4 +216,11 @@ div::-webkit-scrollbar-track{
 div::-webkit-scrollbar-thumb{
     background-color: #B0B0B0;
 	border-radius:8px;
+}
+
+button:focus, .btn:focus{
+	border-color: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+	outline: 0 none;
 }
