@@ -28,7 +28,11 @@ header{
 footer{
 	float:left;
 	width:100%;
-	height:30px;
+	height:22px;
+}
+
+button{
+	margin:0px;
 }
 
 #all{
@@ -36,13 +40,13 @@ footer{
 	height:400px;
 	overflow-x: hidden;
 	overflow-y:auto;
-	background-color: lightgray;
+	background-color: #EFEFDE;
 }
 
 #content{
 	float:left;
 	width:100%;
-    height: -webkit-calc(100% - 60px);
+    height: -webkit-calc(100% - 53px);
 }
 
 
@@ -62,7 +66,7 @@ footer{
 	float:left;
 	margin:3px 2px 0px 2px;
 	width:-webkit-calc(100% - 4px);
-	height:260px;
+	height:270px;
 	overflow: auto;
 }
 
@@ -83,8 +87,8 @@ footer{
 #se_searchBar{
 	position:relative;
 	float:left;
-	margin: 2px 3px 2px;
-	width:-webkit-calc(100% - 6px);
+	margin: 2px 6px 2px;
+	width:-webkit-calc(100% - 12px);
 	height:30px;
 }
 
@@ -117,7 +121,7 @@ footer{
 	display:inline-block;
 	float:left;
 	height: 100%;
-	width:50px;
+	width:25px;
 }
 
 #se_pagination li button{
@@ -154,26 +158,37 @@ footer{
 .sa_info_input{
 	width:-webkit-calc(100% - 14px);
 	margin:0px;
+	transform: scaleX(0.98);
+	-webkit-transform: scaleX(0.98);
 }
 
 .sa_tab{
 	width:-webkit-calc(100% - 6px);
 	margin:3px;
-	border-bottom:1px solid gray;
 	cursor:pointer;
+	transform: scale(0.9,0.9);
+	-webkit-transform: scale(0.9,0.9);
+	transition: all 1s;
+	-webkit-transition: all 1s;
 }
 
 .sa_tab:hover{
-	background-color:#E8E8E8;
+	background-color: #CEDFCE;
+	transform: scale(0.9,0.9);
+	-webkit-transform: scale(0.9,0.9);
 }
 
 
 .sa_selected{
-	background-color: #B0B0B0;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+	transform: scale(0.97,0.97);
+	-webkit-transform: scale(0.97,0.97);
 }
 
 .sa_selected:hover{
-	background-color: #B0B0B0;
+	transform: scale(0.97,0.97);
+	-webkit-transform: scale(0.97,0.97);
 }
 
 .sa_tab:last-child{
@@ -209,12 +224,12 @@ div::-webkit-scrollbar{
 }
 
 div::-webkit-scrollbar-track{
-	background-color: lightgray;
+	background-color: #EFEFDE;
 	border-radius:8px;
 }
  
 div::-webkit-scrollbar-thumb{
-    background-color: #B0B0B0;
+    background-color: #BDCFBD;
 	border-radius:8px;
 }
 
