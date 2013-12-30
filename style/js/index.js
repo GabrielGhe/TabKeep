@@ -50,8 +50,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 			{title: "blah blah blah2", url:"something.com2", selected:true},
 			{title: "blah blah blah3", url:"something.com3", selected:true},
 			{title: "blah blah blah4", url:"something.com4", selected:true},
-			{title: "blah blah blah5", url:"something.com5", selected:true},
-			{title: "blah blah blah6", url:"something.com6", selected:true}
+			{title: "blah blah blah5", url:"something.com5", selected:true}
 		]
 
 
@@ -85,7 +84,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
  * ##																			##
  * ############################################################################### */
 
-MyApp.controller("SearchController", ['$scope','$location', function($scope, $location){
+MyApp.controller("SearchController", ['$scope','$location', '$filter', function($scope, $location, $filter){
 
 	/**
 	 * Init method
@@ -97,10 +96,6 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 		//keepTabs
 		$scope.keepTabs = [];
 		$scope.setKeepTabs();
-
-		//page items
-		$scope.pageItems = [];
-		$scope.setPageItems($scope.keepTabs.length);
 	}
 
 	/**
@@ -129,32 +124,7 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 			{blah:"blah8"},
 			{blah:"blah9"},
 			{blah:"blah10"},
-			{blah:"blah11"},
-			{blah:"blah1"},
-			{blah:"blah2"},
-			{blah:"blah3"},
-			{blah:"blah4"},
-			{blah:"blah5"},
-			{blah:"blah6"},
-			{blah:"blah6"},
-			{blah:"blah7"},
-			{blah:"blah8"},
-			{blah:"blah9"},
-			{blah:"blah10"},
-			{blah:"blah11"},
-			{blah:"blah1"},
-			{blah:"blah2"},
-			{blah:"blah3"},
-			{blah:"blah4"},
-			{blah:"blah5"},
-			{blah:"blah6"},
-			{blah:"blah6"},
-			{blah:"blah7"},
-			{blah:"blah8"},
-			{blah:"blah9"},
-			{blah:"blah10"},
-			{blah:"blah11"},
-			{blah:"blah12"}
+			{blah:"blah11"}
 		];
 
 		$scope.keepTabs = ret;
@@ -166,7 +136,9 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 	 * @param  {integer} num [number of elements]
 	 * @return {array}     [Array of pages]
 	 */
-	$scope.setPageItems = function( num ){
+	$scope.getPageItems = function( array ){
+		num = $filter('filter')(array, $scope.search);
+		num = num.length;
 		ret = [];
 
 		if(num == 0){
@@ -174,19 +146,29 @@ MyApp.controller("SearchController", ['$scope','$location', function($scope, $lo
 		} else {
 			//determine end
 			end = num / $scope.itemsPerPage;
-			console.log("first: " + end);
 			end += (num % $scope.itemsPerPage == 0)? 0 : 1;
-			console.log("first: " + end);
 			end = Math.floor(end);
-			console.log("first: " + end);
 
 			for(var i= 0; i < end; i++){
 				ret.push(i);
 			}
 		}
 
-		$scope.pageItems = ret;
+		return ret;
 	}
+
+
+	/**
+	 * Watching if the search filter was changed
+	 * @param  {String} newValue [new value]
+	 * @param  {String} oldValue [old value]
+	 */
+	$scope.$watch('search', function( newValue, oldValue){
+		if(newValue != oldValue){
+			$scope.curPage = 0;
+		}
+	});
+
 
 	/**
 	 * Sets the page

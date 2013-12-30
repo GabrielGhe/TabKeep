@@ -2,8 +2,8 @@
 
 	<!-- Search Header -->
 	<header>
-		<button ng-click="go('/')" class="btn tabBtn"><i class="fa fa-folder-o"></i> Save</button>
-		<button disabled class="btn tabBtn"><i class="fa fa-folder-o fa-flip-horizontal"></i> Search</button>
+		<button ng-click="go('/')" class="btn tabBtn"><i class="fa fa-save"></i> Save</button>
+		<button disabled class="btn tabBtn"><i class="fa fa-search"></i> Search</button>
 	</header>
 	<!-- END Search Header -->
 
@@ -12,7 +12,7 @@
 		<!-- Search Bar -->
 		<div id="se_searchBar">
 			<i id="search_icon" class="fa fa-search"></i>
-			<input id="search" type="search" class="form-control" placeholder="Search">
+			<input ng-model="search" id="search" type="search" class="form-control" placeholder="Search">
 		</div>
 
 		<!-- Saved Sessions -->
@@ -29,7 +29,7 @@
 
 		<!-- pagination -->
 		<ul id="se_pagination">
-			<li ng-repeat="page in pageItems">
+			<li ng-repeat="page in getPageItems(keepTabs)">
 				<button class="btn pageBtns btn-mini" ng-class="{'btn-success disabled': page == curPage}" ng-click="setPage(page)">
 					{{page + 1}}
 				</button>

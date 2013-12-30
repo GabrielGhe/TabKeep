@@ -1,5 +1,10 @@
 /*�Gabriel Gheorghian*/
 
+/*
+Color Scheme...vushkyvush
+http://www.colorcombos.com/color-schemes/117/ColorCombo117.html
+*/
+
 body,button{
     margin:0;
     padding:0;
@@ -158,38 +163,33 @@ button{
 .sa_info_input{
 	width:-webkit-calc(100% - 14px);
 	margin:0px;
-	transform: scaleX(0.98);
+			transform: scaleX(0.98);
 	-webkit-transform: scaleX(0.98);
 }
 
 .sa_tab{
-	width:-webkit-calc(100% - 6px);
-	margin:3px;
+	font-size:94%;
+	width:-webkit-calc(100% - 10px);
+	margin:5px;
 	cursor:pointer;
-	transform: scale(0.9,0.9);
-	-webkit-transform: scale(0.9,0.9);
-	transition: all 1s;
+			transform: scale(0.93,0.93);
+	-webkit-transform: scale(0.93,0.93);
+			transition: all 1s;
 	-webkit-transition: all 1s;
 }
 
 .sa_tab:hover{
 	background-color: #CEDFCE;
-	transform: scale(0.9,0.9);
-	-webkit-transform: scale(0.9,0.9);
 }
 
 
 .sa_selected{
-	transition: all 1s;
+			transition: all 1s;
 	-webkit-transition: all 1s;
-	transform: scale(0.97,0.97);
-	-webkit-transform: scale(0.97,0.97);
+			transform: scale(1,1);
+	-webkit-transform: scale(1,1);
 }
 
-.sa_selected:hover{
-	transform: scale(0.97,0.97);
-	-webkit-transform: scale(0.97,0.97);
-}
 
 .sa_tab:last-child{
 	border-bottom:0px;
@@ -204,7 +204,7 @@ button{
 }
 
 .sa_tab_url{
-	font-size: 70%;
+	font-size: 85%;
 	margin:2px;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -235,7 +235,7 @@ div::-webkit-scrollbar-thumb{
 
 button:focus, .btn:focus{
 	border-color: none;
-    box-shadow: none;
+    		box-shadow: none;
     -webkit-box-shadow: none;
 	outline: 0 none;
 }
