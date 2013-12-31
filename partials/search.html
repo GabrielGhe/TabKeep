@@ -16,6 +16,24 @@
 		</div>
 
 		<!-- Saved Sessions -->
+		<div id="se_keepTabsSection">
+			<ul>
+				<li class="se_item"  ng-click="se_select($index)"
+				ng-repeat="item in getPageItems( keepTabs ) | limitTo:itemsPerPage">
+
+					<!-- title -->
+					<div class="se_title">
+						{{item.title}}
+					</div>
+
+					<!-- tags -->
+					<div class="se_tags">
+						{{item.tags}}
+					</div>
+
+				</li>
+			</ul>
+		</div>
 	</div>
 	<!-- END Search Content -->
 
@@ -29,7 +47,7 @@
 
 		<!-- pagination -->
 		<ul id="se_pagination">
-			<li ng-repeat="page in getPageItems(keepTabs)">
+			<li ng-repeat="page in getPages(keepTabs)">
 				<button class="btn pageBtns btn-mini" ng-class="{'btn-success disabled': page == curPage}" ng-click="setPage(page)">
 					{{page + 1}}
 				</button>
@@ -37,8 +55,8 @@
 		</ul>
 
 		<!-- next button -->
-		<button id="se_prev" class="btn btn-mini" ng-click="nextPage()"
-		ng-class="{ 'disabled': (curPage == pageItems.length - 1) || (keepTabs.length == 0) }">
+		<button id="se_next" class="btn btn-mini" ng-click="nextPage()"
+		ng-class="{ 'disabled': (curPage == pageItems - 1) || (keepTabs.length == 0) }">
 			<i class="fa fa-angle-right"></i>
 		</button>
 	</footer>

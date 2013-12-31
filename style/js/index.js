@@ -91,11 +91,13 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 	 */
 	$scope.Init = function(){
 		$scope.curPage = 0;
-		$scope.itemsPerPage = 5;
+		$scope.itemsPerPage = 6;
 
 		//keepTabs
 		$scope.keepTabs = [];
 		$scope.setKeepTabs();
+		//page items
+		$scope.pageItems = 0;
 	}
 
 	/**
@@ -113,18 +115,36 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 	$scope.setKeepTabs = function(){
 		ret = [];
 		ret = [
-			{blah:"blah1"},
-			{blah:"blah2"},
-			{blah:"blah3"},
-			{blah:"blah4"},
-			{blah:"blah5"},
-			{blah:"blah6"},
-			{blah:"blah6"},
-			{blah:"blah7"},
-			{blah:"blah8"},
-			{blah:"blah9"},
-			{blah:"blah10"},
-			{blah:"blah11"}
+			{title:"blah1", tags: "this1 that0 and another"},
+			{title:"blah2", tags: "this2 that5 and another"},
+			{title:"blah3", tags: "this3 that6 and another"},
+			{title:"blah4", tags: "this4 that3 and another"},
+			{title:"blah5", tags: "this5 that6 and another"},
+			{title:"blah6", tags: "this6 that9 and another"},
+			{title:"blah7", tags: "this7 that2 and another"},
+			{title:"blah8", tags: "this8 that6 and another"},
+			{title:"blah9", tags: "this9 that0 and another"},
+			{title:"blah10", tags: "this1 that8 and another"},
+			{title:"blah11", tags: "this2 that7 and another"},
+			{title:"blah12", tags: "this3 that1 and another"},
+			{title:"blah13", tags: "this4 that5 and another"},
+			{title:"blah14", tags: "this5 that2 and another"},
+			{title:"blah15", tags: "this6 that5 and another"},
+			{title:"blah16", tags: "this7 that7 and another"},
+			{title:"blah17", tags: "this8 that9 and another"},
+			{title:"blah18", tags: "this9 that0 and another"},
+			{title:"blah19", tags: "this1 that3 and another"},
+			{title:"blah20", tags: "this2 that4 and another"},
+			{title:"blah21", tags: "this3 that7 and another"},
+			{title:"blah22", tags: "this4 that2 and another"},
+			{title:"blah23", tags: "this5 that9 and another"},
+			{title:"blah24", tags: "this6 that1 and another"},
+			{title:"blah25", tags: "this7 that4 and another"},
+			{title:"blah26", tags: "this8 that2 and another"},
+			{title:"blah27", tags: "this1 that8 and another"},
+			{title:"blah28", tags: "this2 that9 and another"},
+			{title:"blah29", tags: "this3 that4 and another"},
+			{title:"blah30", tags: "this4 that6 and another"}
 		];
 
 		$scope.keepTabs = ret;
@@ -132,11 +152,32 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 
 
 	/**
-	 * Sets the pageItems array
-	 * @param  {integer} num [number of elements]
-	 * @return {array}     [Array of pages]
+	 * Gets the items per page
+	 * @param  {array} array [description]
+	 * @return {[type]}       [description]
 	 */
 	$scope.getPageItems = function( array ){
+		filtered = $filter('filter')(array, $scope.search);
+
+		start = $scope.curPage * 6;
+		len = 6;
+		len = (len < filtered.length - start) ? len : filtered.length - start;
+
+		filteredSet = [];
+		for(var x = start; x < start + len; x++){
+			filteredSet.push(filtered[x]);
+		}
+
+		return filteredSet;
+	}
+
+
+	/**
+	 * Sets the pageItems array
+	 * @param  {array} num [number of elements]
+	 * @return {array}     [Array of pages]
+	 */
+	$scope.getPages = function( array ){
 		num = $filter('filter')(array, $scope.search);
 		num = num.length;
 		ret = [];
@@ -153,6 +194,7 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 				ret.push(i);
 			}
 		}
+		$scope.pageItems = ret.length;
 
 		return ret;
 	}
@@ -192,7 +234,7 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 	 * Go to the next page
 	 */
 	$scope.nextPage = function(){
-		if($scope.curPage < $scope.pageItems.length - 1){
+		if($scope.curPage < $scope.pageItems - 1){
 			$scope.curPage++;
 		}
 	}

@@ -77,9 +77,8 @@ button{
 
 
 #sa_saveBtn{
-	line-height: 15px;
-	margin: 2px 3px 2px;
-	width:-webkit-calc(100% - 6px);
+	float:left;
+	width:100%;
 }
 
 
@@ -102,6 +101,14 @@ button{
 	padding-right: 30px;
 }
 
+#se_keepTabsSection{
+	float:left;
+	margin:3px 2px 0px 2px;
+	width:-webkit-calc(100% - 4px);
+	height:305px;
+	overflow: auto;
+}
+
 #search_icon{
 	position: absolute;
 	top:-3px;
@@ -110,7 +117,7 @@ button{
     pointer-events: none;
 }
 
- #se_prev{
+ #se_prev, #se_next{
  	float:left;
  	width:50px;
  	height:100%;
@@ -132,12 +139,6 @@ button{
 #se_pagination li button{
 	width:100%;
 }
-
- #se_next{
- 	float:right;
- 	height:100%;
- 	width:50px;
- }
 
 
 /* * * * * * * * * * * * * * * *
@@ -167,7 +168,7 @@ button{
 	-webkit-transform: scaleX(0.98);
 }
 
-.sa_tab{
+.sa_tab, .se_item{
 	font-size:94%;
 	width:-webkit-calc(100% - 10px);
 	margin:5px;
@@ -178,7 +179,11 @@ button{
 	-webkit-transition: all 1s;
 }
 
-.sa_tab:hover{
+.se_item{
+	font-size:100%;
+}
+
+.sa_tab:hover, .se_item:hover{
 	background-color: #CEDFCE;
 }
 
@@ -190,12 +195,7 @@ button{
 	-webkit-transform: scale(1,1);
 }
 
-
-.sa_tab:last-child{
-	border-bottom:0px;
-}
-
-.sa_tab_title{
+.sa_tab_title, .se_title{
 	margin:2px;
 	text-overflow:ellipsis;
 	white-space: nowrap;
@@ -203,7 +203,7 @@ button{
 	width:-webkit-calc(100% - 34px);
 }
 
-.sa_tab_url{
+.sa_tab_url, .se_tags{
 	font-size: 85%;
 	margin:2px;
 	text-overflow:ellipsis;
