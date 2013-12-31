@@ -45,16 +45,23 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 	 * @return {Array} [Array of tabs]
 	 */
 	$scope.sa_getTabs = function(){
-		ret = [
-			{title: "blah blah blah1 bguiewb euiwb geuwi bgewui gbewuib geuiw bgewui bgewui bgewui gbwei", url:"something.com1", selected:true},
-			{title: "blah blah blah2", url:"something.com2", selected:true},
-			{title: "blah blah blah3", url:"something.com3", selected:true},
-			{title: "blah blah blah4", url:"something.com4", selected:true},
-			{title: "blah blah blah5", url:"something.com5", selected:true}
-		]
+		
+		$scope.sa_tabs = [];
+		chrome.tabs.query({},function (tabs) {
+			for(var i=0; i < tabs.length; i++){
+				//create object
+				var tab = {id: tabs[i].id, title: tabs[i].title, url: tabs[i].url, selected:true};
 
-
-		$scope.sa_tabs = ret;
+				//get favicon
+				if(tabs[i].favIconUrl && tabs[i].favIconUrl != ''){
+					tab.favicon = tabs[i].favIconUrl;
+				}
+				
+				$scope.sa_tabs.push(tab);
+				$scope.$apply();
+			}
+		});
+		console.log($scope.sa_tabs);
 	}
 
 
@@ -115,10 +122,10 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 	$scope.setKeepTabs = function(){
 		ret = [];
 		ret = [
-			{title:"blah1", tags: "this1 that0 and another"},
+			{title:"blah1 erbgiuerb uigrebhuireb huireb huireb huireb huireb huireb huireb huier", tags: "this1 that0 and another"},
 			{title:"blah2", tags: "this2 that5 and another"},
 			{title:"blah3", tags: "this3 that6 and another"},
-			{title:"blah4", tags: "this4 that3 and another"},
+			{title:"blah4", tags: "this4 that3 and another veruyv heruyhv eruyhv eruyhv eruyhv r eruyv heruyv heruyhv eruyhv eruyhv eruyhv eruyv heruyv heeruy"},
 			{title:"blah5", tags: "this5 that6 and another"},
 			{title:"blah6", tags: "this6 that9 and another"},
 			{title:"blah7", tags: "this7 that2 and another"},
