@@ -12,10 +12,10 @@
 
 		<div id="sa_info">
 			<!-- Name -->
-			<input class="sa_info_input" ng-model="saName" type="text" placeholder="Name">
+			<input class="sa_info_input" ng-model="sa_name" type="text" placeholder="Name">
 
 			<!-- Tags -->
-			<input class="sa_info_input" ng-model="saTag" type="text" placeholder="Tags">
+			<input class="sa_info_input" ng-model="sa_tags" type="text" placeholder="Tags">
 		</div>
 
 		<!-- Tabs Selected -->
@@ -45,7 +45,10 @@
 	<!-- Save Footer -->
 	<footer>
 		<!-- Save Session -->
-		<button id="sa_saveBtn" ng-click="" class="btn btn-mini btn-success"><i class="fa fa-plus"></i> Save Session</button>
+		<button id="sa_saveBtn" ng-click="save()" class="btn btn-mini btn-success"
+		ng-class="{'disabled': !goodToSave()}">
+			<i class="fa fa-plus"></i> Save Session
+		</button>
 	</footer>
 	<!-- END Save Footer -->
 </div>	

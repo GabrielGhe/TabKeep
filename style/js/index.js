@@ -14,6 +14,53 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	.otherwise({ redirectTo: '/'});
 }]);
 
+//services
+MyApp.service('KeepTabDB', function() {
+
+    return {
+    	/**
+    	 * Saves a session object
+    	 * @param  {Object} element [Holds the id, url, name and list of tabs]
+    	 */
+		save: function(element){
+			//get the db (in json)
+			var itemsStr = localStorage.getItem('KeepTabDB') || "[]";
+			//parse it to have an array
+            var items = JSON.parse(itemsStr);
+            //add new element and save
+			items.splice(0,0, element);
+			localStorage.setItem('KeepTabDB',JSON.stringify(items));
+		},
+
+
+		/**
+		 * Deletes an item
+		 * @param  {object} element [element to remove]
+		 */
+		delete: function(idx){
+			//initial load db and parse the json
+			var itemsStr = localStorage.getItem('KeepTabDB') || "[]";
+            var items = JSON.parse(itemsStr);
+
+			//remove the element
+			items.splice(idx, 1);
+
+		    //commit changes
+		    localStorage.setItem('KeepTabDB',JSON.stringify(items));
+		},
+
+
+		/**
+		 * Returns the list of every saved item
+		 * @return {array} [the array of all the stored session objs]
+		 */
+		getList: function(){
+			return JSON.parse(localStorage.getItem('KeepTabDB') || "[]");
+		}
+	}
+});
+
+
 
 /* ###############################################################################
  * ##																			##
@@ -22,23 +69,17 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
  * ############################################################################### */
 
 //controllers
-MyApp.controller("SaveController",['$scope', '$location', function($scope, $location){
+MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function($scope, $location, KeepTabDB){
 
-	/*
-	chrome.tabs.query({},function (tabs) {
-		for(var i=0; i < tabs.length; i++){
-			ret.push(tabs[i]);
-		}
-		$scope.Tabs = ret;
-	});
-	*/
-	
 	/**
 	 * Init method
 	 */
 	$scope.Init = function(){
+		$scope.sa_name = "";
+		$scope.sa_tags = "";
 		$scope.sa_getTabs();
 	}
+
 
 	/**
 	 * Returns the current tabs in the window
@@ -50,7 +91,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 		chrome.tabs.query({},function (tabs) {
 			for(var i=0; i < tabs.length; i++){
 				//create object
-				var tab = {id: tabs[i].id, title: tabs[i].title, url: tabs[i].url, selected:true};
+				var tab = {id: tabs[i].id, title: tabs[i].title, url: tabs[i].url, selected:false};
 
 				//get favicon
 				if(tabs[i].favIconUrl && tabs[i].favIconUrl != ''){
@@ -61,7 +102,58 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 				$scope.$apply();
 			}
 		});
-		console.log($scope.sa_tabs);
+	}
+
+
+	/**
+	 * Finds out if any item was selected and if the name was filled out
+	 * @return {boolean} [if at least 1 item was selected]
+	 */
+	$scope.goodToSave = function(){
+		nameB = $scope.sa_name.trim() != "";
+
+		listB = false;
+		for(var x=0; x < $scope.sa_tabs.length; x++){
+			if($scope.sa_tabs[x].selected)listB = true;
+		}
+
+		return (nameB && listB);
+	}
+
+
+	/**
+	 * Saves
+	 */
+	$scope.save = function(){
+		if($scope.goodToSave()){
+			var id = new Date();
+			var urlList = [];
+			var closeTabIds = [];
+			for(var x=0; x < $scope.sa_tabs.length; x++){
+				if($scope.sa_tabs[x].selected){
+					urlList.push($scope.sa_tabs[x].url);
+					closeTabIds.push($scope.sa_tabs[x].id);
+				}
+			}
+
+			//save it in the db
+			KeepTabDB.save({	
+				id: id.getTime(),
+				title: $scope.sa_name.trim(), 
+				tags:  $scope.sa_tags.trim(),
+				list:  urlList
+			});
+
+			//create an empty tab if you're saving every tab
+			if($scope.sa_tabs.length == closeTabIds.length){
+				chrome.tabs.create();
+			}
+
+			//close selected tabs
+			chrome.tabs.remove(closeTabIds, function(){
+				window.close();
+			});
+		}
 	}
 
 
@@ -72,6 +164,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
 	$scope.sa_select = function(idx){
 		$scope.sa_tabs[idx].selected = !$scope.sa_tabs[idx].selected;		
 	}
+
 
 	/**
 	 * Method used to go to different routes
@@ -91,7 +184,7 @@ MyApp.controller("SaveController",['$scope', '$location', function($scope, $loca
  * ##																			##
  * ############################################################################### */
 
-MyApp.controller("SearchController", ['$scope','$location', '$filter', function($scope, $location, $filter){
+MyApp.controller("SearchController", ['$scope','$location', '$filter', 'KeepTabDB', function($scope, $location, $filter, KeepTabDB){
 
 	/**
 	 * Init method
@@ -117,57 +210,22 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 
 	/**
 	 * Sets the keepTabs array
-	 * @return {[type]} [description]
 	 */
 	$scope.setKeepTabs = function(){
-		ret = [];
-		ret = [
-			{title:"blah1 erbgiuerb uigrebhuireb huireb huireb huireb huireb huireb huireb huier", tags: "this1 that0 and another"},
-			{title:"blah2", tags: "this2 that5 and another"},
-			{title:"blah3", tags: "this3 that6 and another"},
-			{title:"blah4", tags: "this4 that3 and another veruyv heruyhv eruyhv eruyhv eruyhv r eruyv heruyv heruyhv eruyhv eruyhv eruyhv eruyv heruyv heeruy"},
-			{title:"blah5", tags: "this5 that6 and another"},
-			{title:"blah6", tags: "this6 that9 and another"},
-			{title:"blah7", tags: "this7 that2 and another"},
-			{title:"blah8", tags: "this8 that6 and another"},
-			{title:"blah9", tags: "this9 that0 and another"},
-			{title:"blah10", tags: "this1 that8 and another"},
-			{title:"blah11", tags: "this2 that7 and another"},
-			{title:"blah12", tags: "this3 that1 and another"},
-			{title:"blah13", tags: "this4 that5 and another"},
-			{title:"blah14", tags: "this5 that2 and another"},
-			{title:"blah15", tags: "this6 that5 and another"},
-			{title:"blah16", tags: "this7 that7 and another"},
-			{title:"blah17", tags: "this8 that9 and another"},
-			{title:"blah18", tags: "this9 that0 and another"},
-			{title:"blah19", tags: "this1 that3 and another"},
-			{title:"blah20", tags: "this2 that4 and another"},
-			{title:"blah21", tags: "this3 that7 and another"},
-			{title:"blah22", tags: "this4 that2 and another"},
-			{title:"blah23", tags: "this5 that9 and another"},
-			{title:"blah24", tags: "this6 that1 and another"},
-			{title:"blah25", tags: "this7 that4 and another"},
-			{title:"blah26", tags: "this8 that2 and another"},
-			{title:"blah27", tags: "this1 that8 and another"},
-			{title:"blah28", tags: "this2 that9 and another"},
-			{title:"blah29", tags: "this3 that4 and another"},
-			{title:"blah30", tags: "this4 that6 and another"}
-		];
-
-		$scope.keepTabs = ret;
+		$scope.keepTabs = KeepTabDB.getList();
 	}
 
 
 	/**
 	 * Gets the items per page
-	 * @param  {array} array [description]
-	 * @return {[type]}       [description]
+	 * @param  {array} array [Unfiltered array]
+	 * @return {array}       [array of page numbers]
 	 */
 	$scope.getPageItems = function( array ){
 		filtered = $filter('filter')(array, $scope.search);
 
-		start = $scope.curPage * 6;
-		len = 6;
+		start = $scope.curPage * $scope.itemsPerPage;
+		len = $scope.itemsPerPage;
 		len = (len < filtered.length - start) ? len : filtered.length - start;
 
 		filteredSet = [];
@@ -225,6 +283,25 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', function(
 	 */
 	$scope.setPage = function( page ){
 		$scope.curPage = page;
+	}
+
+
+	/**
+	 * Loads the session
+	 * @param  {Object} item [session object]
+	 */
+	$scope.se_load = function( item ){
+		for(var x=0; x < $scope.keepTabs.length; x++){
+			if($scope.keepTabs[x].id == item.id){
+				KeepTabDB.delete(x);
+			}
+		}
+		$scope.setKeepTabs();
+
+		//load the urls
+		for(var i=0; i<item.list.length; i++){
+			chrome.tabs.create({url:item.list[i], active:false});
+		}
 	}
 
 
