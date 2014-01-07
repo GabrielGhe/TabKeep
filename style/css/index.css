@@ -173,9 +173,9 @@ button{
 	width:-webkit-calc(100% - 10px);
 	margin:5px;
 	cursor:pointer;
-					transform: scale(0.93,0.93);
+	transform: scale(0.93,0.93);
 	-webkit-transform: scale(0.93,0.93);
-					transition: all 1s;
+	transition: all 1s;
 	-webkit-transition: all 1s;
 }
 
@@ -189,9 +189,9 @@ button{
 
 
 .sa_selected{
-					transition: all 1s;
+	transition: all 1s;
 	-webkit-transition: all 1s;
-					transform: scale(1,1);
+	transform: scale(1,1);
 	-webkit-transform: scale(1,1);
 }
 
@@ -235,7 +235,7 @@ div::-webkit-scrollbar-thumb{
 
 button:focus, .btn:focus{
 	border-color: none;
-    		box-shadow: none;
-    -webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
 	outline: 0 none;
 }
