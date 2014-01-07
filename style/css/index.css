@@ -6,13 +6,13 @@ http://www.colorcombos.com/color-schemes/117/ColorCombo117.html
 */
 
 body,button{
-    margin:0;
-    padding:0;
+	margin:0;
+	padding:0;
 }
 
 td {
-    text-align: center;
-    vertical-align: middle;
+	text-align: center;
+	vertical-align: middle;
 }
 
 ul {
@@ -21,7 +21,7 @@ ul {
 }
 
 li {
-    margin:0px;
+	margin:0px;
 }
 
 header{
@@ -51,7 +51,7 @@ button{
 #content{
 	float:left;
 	width:100%;
-    height: -webkit-calc(100% - 53px);
+	height: -webkit-calc(100% - 53px);
 }
 
 
@@ -112,9 +112,9 @@ button{
 #search_icon{
 	position: absolute;
 	top:-3px;
-    right: 0px;
-    padding: 10px 12px;
-    pointer-events: none;
+	right: 0px;
+	padding: 10px 12px;
+	pointer-events: none;
 }
 
  #se_prev, #se_next{
@@ -173,9 +173,9 @@ button{
 	width:-webkit-calc(100% - 10px);
 	margin:5px;
 	cursor:pointer;
-			transform: scale(0.93,0.93);
+					transform: scale(0.93,0.93);
 	-webkit-transform: scale(0.93,0.93);
-			transition: all 1s;
+					transition: all 1s;
 	-webkit-transition: all 1s;
 }
 
@@ -189,9 +189,9 @@ button{
 
 
 .sa_selected{
-			transition: all 1s;
+					transition: all 1s;
 	-webkit-transition: all 1s;
-			transform: scale(1,1);
+					transform: scale(1,1);
 	-webkit-transform: scale(1,1);
 }
 
@@ -219,7 +219,7 @@ button{
 
 
 div::-webkit-scrollbar{
-    width: 9px;
+	width: 9px;
 	height:9px;
 }
 
@@ -229,7 +229,7 @@ div::-webkit-scrollbar-track{
 }
  
 div::-webkit-scrollbar-thumb{
-    background-color: #BDCFBD;
+	background-color: #BDCFBD;
 	border-radius:8px;
 }
 
