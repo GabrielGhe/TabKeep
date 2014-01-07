@@ -1,7 +1,7 @@
 /* ###############################################################################
- * ##																			##
- * ##						@author: Gabriel Gheorghian							##
- * ##																			##
+ * ##										##
+ * ##				@author: Gabriel Gheorghian			##
+ * ##										##
  * ############################################################################### */
 
 var MyApp = angular.module('MyApp', ['ui.bootstrap']);
@@ -18,16 +18,16 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 MyApp.service('KeepTabDB', function() {
 
     return {
-    	/**
-    	 * Saves a session object
-    	 * @param  {Object} element [Holds the id, url, name and list of tabs]
-    	 */
+		/**
+		 * Saves a session object
+		 * @param  {Object} element [Holds the id, url, name and list of tabs]
+		 */
 		save: function(element){
 			//get the db (in json)
 			var itemsStr = localStorage.getItem('KeepTabDB') || "[]";
 			//parse it to have an array
-            var items = JSON.parse(itemsStr);
-            //add new element and save
+			var items = JSON.parse(itemsStr);
+			//add new element and save
 			items.splice(0,0, element);
 			localStorage.setItem('KeepTabDB',JSON.stringify(items));
 		},
@@ -40,13 +40,13 @@ MyApp.service('KeepTabDB', function() {
 		delete: function(idx){
 			//initial load db and parse the json
 			var itemsStr = localStorage.getItem('KeepTabDB') || "[]";
-            var items = JSON.parse(itemsStr);
+			var items = JSON.parse(itemsStr);
 
 			//remove the element
 			items.splice(idx, 1);
 
-		    //commit changes
-		    localStorage.setItem('KeepTabDB',JSON.stringify(items));
+    			//commit changes
+	    		localStorage.setItem('KeepTabDB',JSON.stringify(items));
 		},
 
 
@@ -63,9 +63,9 @@ MyApp.service('KeepTabDB', function() {
 
 
 /* ###############################################################################
- * ##																			##
- * ##							Save Controller									##
- * ##																			##
+ * ##										##
+ * ##				Save Controller					##
+ * ##										##
  * ############################################################################### */
 
 //controllers
@@ -179,9 +179,9 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 
 
 /* ###############################################################################
- * ##																			##
- * ##						QuizUsage Controller								##
- * ##																			##
+ * ##										##
+ * ##				QuizUsage Controller				##
+ * ##										##
  * ############################################################################### */
 
 MyApp.controller("SearchController", ['$scope','$location', '$filter', 'KeepTabDB', function($scope, $location, $filter, KeepTabDB){
