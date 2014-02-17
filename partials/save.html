@@ -12,7 +12,8 @@
 
 		<div id="sa_info">
 			<!-- Name -->
-			<input class="sa_info_input" ng-model="sa_name" type="text" placeholder="Name">
+			<!-- <input class="sa_info_input" ng-model="sa_name" type="text" placeholder="Name"> -->
+			<input type="text" ng-model="sa_name" placeholder="Name" typeahead="recent.title for recent in recentList | filter:$viewValue | limitTo:4" class="sa_info_input" typeahead-on-select="onSelect($item)">
 
 			<!-- Tags -->
 			<input class="sa_info_input" ng-model="sa_tags" type="text" placeholder="Tags">

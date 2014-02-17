@@ -56,7 +56,48 @@ MyApp.service('KeepTabDB', function() {
 		 */
 		getList: function(){
 			return JSON.parse(localStorage.getItem('KeepTabDB') || "[]");
-		}
+		},
+
+
+		/**
+		 * Save recent name and tag object for later
+		 * @param  {Object} element [Holds the name and tags of recently openned session]
+		 */
+		recentSave: function(element){
+			//get the db (in json)
+			var itemsStr = localStorage.getItem('Recent') || "[]";
+			//parse it to have an array
+            var items = JSON.parse(itemsStr);
+            //add new element and save
+			items.splice(0,0, element);
+			localStorage.setItem('Recent',JSON.stringify(items));
+		},
+
+
+		/**
+		 * Deletes an item
+		 * @param  {object} element [element to remove]
+		 */
+		recentDelete: function(idx){
+			//initial load db and parse the json
+			var itemsStr = localStorage.getItem('Recent') || "[]";
+            var items = JSON.parse(itemsStr);
+
+			//remove the element
+			items.splice(idx, 1);
+
+		    //commit changes
+		    localStorage.setItem('Recent',JSON.stringify(items));
+		},
+
+
+		/**
+		 * Returns the list of every saved item
+		 * @return {array} [the array of all the stored session objs]
+		 */
+		recentGetList: function(){
+			return JSON.parse(localStorage.getItem('Recent') || "[]");
+		},
 	}
 });
 
@@ -78,6 +119,16 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 		$scope.sa_name = "";
 		$scope.sa_tags = "";
 		$scope.sa_getTabs();
+		$scope.setRecent();
+	}
+
+
+	/**
+	 * Sets the keepTabs array
+	 */
+	$scope.setRecent = function(){
+		var x = KeepTabDB.recentGetList();
+		$scope.recentList = x;
 	}
 
 
@@ -140,7 +191,7 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 			KeepTabDB.save({	
 				id: id.getTime(),
 				title: $scope.sa_name.trim(), 
-				tags:  $scope.sa_tags.trim(),
+				tags:  "Global " + $scope.sa_tags.trim(),
 				list:  urlList
 			});
 
@@ -167,6 +218,21 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 
 
 	/**
+	 * TypeAhead on select function
+	 * @param  {object} $item [holds object previously saved]
+	 */
+	$scope.onSelect = function ($item) {
+		$scope.sa_tags = $item.tags;
+		for(var x=0; x < $scope.recentList.length; x++){
+			if($scope.recentList[x].id == $item.id){
+				KeepTabDB.recentDelete(x);
+			}
+		}
+		$scope.setRecent();
+    };
+
+
+	/**
 	 * Method used to go to different routes
 	 * @param  {String} hash [New url]
 	 */
@@ -180,7 +246,7 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 
 /* ###############################################################################
  * ##																			##
- * ##						QuizUsage Controller								##
+ * ##							Search Controller								##
  * ##																			##
  * ############################################################################### */
 
@@ -293,6 +359,13 @@ MyApp.controller("SearchController", ['$scope','$location', '$filter', 'KeepTabD
 	$scope.se_load = function( item ){
 		for(var x=0; x < $scope.keepTabs.length; x++){
 			if($scope.keepTabs[x].id == item.id){
+				//used in typeahead on the save page
+				var id = new Date();
+				KeepTabDB.recentSave({	
+					id: id.getTime(),
+					title: item.title, 
+					tags:  item.tags
+				});
 				KeepTabDB.delete(x);
 			}
 		}
