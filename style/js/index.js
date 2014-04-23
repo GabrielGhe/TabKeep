@@ -67,8 +67,8 @@ MyApp.service('KeepTabDB', function() {
 			//get the db (in json)
 			var itemsStr = localStorage.getItem('Recent') || "[]";
 			//parse it to have an array
-            var items = JSON.parse(itemsStr);
-            //add new element and save
+			var items = JSON.parse(itemsStr);
+			//add new element and save
 			items.splice(0,0, element);
 			localStorage.setItem('Recent',JSON.stringify(items));
 		},
@@ -81,13 +81,13 @@ MyApp.service('KeepTabDB', function() {
 		recentDelete: function(idx){
 			//initial load db and parse the json
 			var itemsStr = localStorage.getItem('Recent') || "[]";
-            var items = JSON.parse(itemsStr);
+			var items = JSON.parse(itemsStr);
 
 			//remove the element
 			items.splice(idx, 1);
 
-		    //commit changes
-		    localStorage.setItem('Recent',JSON.stringify(items));
+			//commit changes
+			localStorage.setItem('Recent',JSON.stringify(items));
 		},
 
 
