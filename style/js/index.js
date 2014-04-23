@@ -245,9 +245,9 @@ MyApp.controller("SaveController",['$scope', '$location', 'KeepTabDB', function(
 
 
 /* ###############################################################################
- * ##																			##
- * ##							Search Controller								##
- * ##																			##
+ * ##										##
+ * ##				Search Controller				##
+ * ##										##
  * ############################################################################### */
 
 MyApp.controller("SearchController", ['$scope','$location', '$filter', 'KeepTabDB', function($scope, $location, $filter, KeepTabDB){
