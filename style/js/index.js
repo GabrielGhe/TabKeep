@@ -14,10 +14,11 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	.otherwise({ redirectTo: '/'});
 }]);
 
-//TODO Improve rendering speed by using reactjs
+//TODO Improve rendering speed by using reactjs and track by
 //http://plnkr.co/edit/6zfFXU?p=preview
 //http://davidandsuzi.com/ngreact-update/
 //http://plnkr.co/edit/oJF4VXQzS8xFa6SVxqrh?p=preview
+//http://www.bennadel.com/blog/2556-using-track-by-with-ngrepeat-in-angularjs-1-2.htm
 
 //filter
 MyApp.filter('unsafe', function($sce) {
