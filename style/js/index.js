@@ -14,6 +14,12 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	.otherwise({ redirectTo: '/'});
 }]);
 
+MyApp.filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+});
+
 //services
 MyApp.service('KeepTabDB', function() {
 
