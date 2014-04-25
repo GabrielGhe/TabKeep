@@ -16,6 +16,8 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 
 //TODO Improve rendering speed by using reactjs
 //http://plnkr.co/edit/6zfFXU?p=preview
+//http://davidandsuzi.com/ngreact-update/
+//http://plnkr.co/edit/oJF4VXQzS8xFa6SVxqrh?p=preview
 
 //filter
 MyApp.filter('unsafe', function($sce) {
