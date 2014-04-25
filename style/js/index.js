@@ -14,6 +14,10 @@ MyApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	.otherwise({ redirectTo: '/'});
 }]);
 
+//TODO Improve rendering speed by using reactjs
+//http://plnkr.co/edit/6zfFXU?p=preview
+
+//filter
 MyApp.filter('unsafe', function($sce) {
     return function(val) {
         return $sce.trustAsHtml(val);
